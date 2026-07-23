@@ -1,0 +1,79 @@
+name: Scheduled maintenance
+
+on:
+  schedule:
+    # GitHub Actions evaluates scheduled workflows in UTC.
+    - cron: '*/15 * * * *'
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      task:
+        description: Maintenance task to run
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - retry-whatsapp
+          - retention
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduled-maintenance
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CRON_TARGET_URL: ${{ secrets.CRON_TARGET_URL }}
+      CRON_SECRET: ${{ secrets.CRON_SECRET }}
+      EVENT_NAME: ${{ github.event_name }}
+      SCHEDULE: ${{ github.event.schedule }}
+      MANUAL_TASK: ${{ inputs.task }}
+    steps:
+      - name: Validate configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CRON_TARGET_URL:-}" || {
+            echo "Missing CRON_TARGET_URL repository secret."
+            exit 1
+          }
+          test -n "${CRON_SECRET:-}" || {
+            echo "Missing CRON_SECRET repository secret."
+            exit 1
+          }
+
+      - name: Run scheduled job
+        shell: bash
+        run: |
+          set -euo pipefail
+          target="${CRON_TARGET_URL%/}"
+
+          call_job() {
+            local path="$1"
+            echo "Calling /${path}"
+            curl --fail-with-body --retry 3 --retry-all-errors --silent --show-error \
+              --header "Authorization: Bearer ${CRON_SECRET}" \
+              "${target}/api/cron/${path}"
+            echo
+          }
+
+          if [[ "${EVENT_NAME}" == "workflow_dispatch" ]]; then
+            case "${MANUAL_TASK}" in
+              retry-whatsapp|retention) call_job "${MANUAL_TASK}" ;;
+              all) call_job retry-whatsapp; call_job retention ;;
+              *) echo "Unknown maintenance task: ${MANUAL_TASK}"; exit 1 ;;
+            esac
+          elif [[ "${SCHEDULE}" == "*/15 * * * *" ]]; then
+            call_job retry-whatsapp
+          elif [[ "${SCHEDULE}" == "0 4 * * *" ]]; then
+            call_job retention
+          else
+            echo "Unexpected workflow schedule: ${SCHEDULE}"
+            exit 1
+          fi
