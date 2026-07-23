@@ -96,6 +96,21 @@
   color: var(--kg-ink);
   background: var(--kg-signal);
 }
+.kg-brand-mark:has(img) {
+  display: block;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.kg-brand-mark img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.42);
+  transform-origin: center;
+}
 .kg-brand-name {
   display: grid;
   gap: 0.05rem;

@@ -23,12 +23,24 @@ type Settings = {
   summary?: string
 }
 
-function Brand({ company = 'Khangura' }: { company?: string }) {
+function Brand({
+  company = 'Khangura',
+  useMonogram = false,
+}: {
+  company?: string
+  useMonogram?: boolean
+}) {
   return (
     <>
       <span className="kg-brand-mark" aria-hidden="true">
-        <span>K</span>
-        <span>G</span>
+        {useMonogram ? (
+          <img src="/brand/khangura-monogram-v2.png" alt="" />
+        ) : (
+          <>
+            <span>K</span>
+            <span>G</span>
+          </>
+        )}
       </span>
       <span className="kg-brand-name">
         {company}
@@ -42,7 +54,7 @@ export function SiteHeader() {
   return (
     <header className="kg-header">
       <Link className="kg-brand" to="/" aria-label="Khangura Group home">
-        <Brand />
+        <Brand useMonogram />
       </Link>
 
       <nav className="kg-nav" aria-label="Primary navigation">
