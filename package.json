@@ -1,0 +1,73 @@
+{
+  "name": "khangura-group",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "generate-routes": "tsr generate",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint",
+    "format": "prettier --write . && eslint --fix",
+    "check": "prettier --check .",
+    "test": "vitest run --config vitest.config.ts",
+    "bootstrap-admin": "node --env-file=.env --import tsx scripts/bootstrap-admin.ts"
+  },
+  "dependencies": {
+    "@better-auth/mongo-adapter": "^1.6.25",
+    "@cloudinary/url-gen": "^1.22.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@sentry/react": "^10.67.0",
+    "@tabler/icons-react": "^3.45.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-devtools": "latest",
+    "@tanstack/react-form": "^1.33.2",
+    "@tanstack/react-query": "^5.101.4",
+    "@tanstack/react-router": "latest",
+    "@tanstack/react-router-devtools": "latest",
+    "@tanstack/react-start": "latest",
+    "@tanstack/react-table": "^8.21.3",
+    "@tiptap/react": "^3.28.0",
+    "@tiptap/starter-kit": "^3.28.0",
+    "better-auth": "^1.6.25",
+    "cloudinary": "^2.10.0",
+    "embla-carousel-react": "^8.6.0",
+    "mongodb": "^7.5.0",
+    "motion": "^12.42.2",
+    "nitro": "3.0.260610-beta",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sonner": "^2.0.7",
+    "tailwindcss": "^4.1.18",
+    "three": "^0.185.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tanstack/devtools-vite": "latest",
+    "@tanstack/eslint-config": "latest",
+    "@tanstack/router-cli": "^1.132.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "9.20.0",
+    "prettier": "^3.8.1",
+    "tsx": "^4.23.1",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0",
+    "vitest": "^4.1.10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss"
+    ]
+  }
+}
