@@ -3,11 +3,9 @@ import { useQuery } from '@tanstack/react-query'
 import {
   IconArrowUpRight,
   IconBriefcase2,
-  IconBuilding,
   IconCamera,
   IconCheck,
   IconCube,
-  IconHome,
   IconMapPin,
   IconPhone,
 } from '@tabler/icons-react'
@@ -261,48 +259,36 @@ function Home() {
         <section className="kg-project-types">
           <div className="kg-wrap">
             <div className="kg-section-heading kg-section-heading-light">
-              <h2>Different sites. Same attention to the handoff.</h2>
+              <h2>Built for both.</h2>
             </div>
             <div className="kg-path-grid">
               <Link className="kg-path-card" to="/contact">
                 <img
                   className="kg-path-photo"
-                  src="/landing-residential.webp"
-                  alt="Illustrative view of a residential interior renovation in progress."
+                  src="/landing-residential-client.webp"
+                  alt="Residential interior construction project"
                 />
-                <div className="kg-path-icon">
-                  <IconHome size={31} stroke={1.5} />
+                <div className="kg-path-content">
+                  <span>Residential</span>
+                  <h3>Homes & interiors.</h3>
+                  <b>
+                    Start a conversation <IconArrowUpRight size={19} />
+                  </b>
                 </div>
-                <span>Residential</span>
-                <h3>Homes, additions, renovations, and interior work.</h3>
-                <p>
-                  Share the address or city, current project stage, services,
-                  and the timing you are working toward.
-                </p>
-                <b>
-                  Discuss residential work
-                  <IconArrowUpRight size={19} />
-                </b>
               </Link>
               <Link className="kg-path-card kg-path-card-orange" to="/contact">
                 <img
                   className="kg-path-photo"
-                  src="/landing-commercial.webp"
-                  alt="Illustrative view of a commercial buildout in progress."
+                  src="/landing-commercial-client.webp"
+                  alt="Commercial interior construction project"
                 />
-                <div className="kg-path-icon">
-                  <IconBuilding size={31} stroke={1.5} />
+                <div className="kg-path-content">
+                  <span>Commercial</span>
+                  <h3>Buildouts & multi-unit.</h3>
+                  <b>
+                    Start a conversation <IconArrowUpRight size={19} />
+                  </b>
                 </div>
-                <span>Commercial</span>
-                <h3>Buildouts, multi-unit work, and commercial interiors.</h3>
-                <p>
-                  Bring the drawings, location, site constraints, requested
-                  services, and schedule into the first review.
-                </p>
-                <b>
-                  Discuss commercial work
-                  <IconArrowUpRight size={19} />
-                </b>
               </Link>
             </div>
           </div>

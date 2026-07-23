@@ -197,7 +197,7 @@ function PaintScene() {
 
 export default function PaintingScene() {
   return (
-    <div style={{ width: '100%', height: '100vh', background: BG_COLOR }}>
+    <div style={{ width: '100%', height: '100%', background: BG_COLOR }}>
       <Canvas
         gl={{ antialias: true, alpha: false }}
         dpr={[1, 2]}

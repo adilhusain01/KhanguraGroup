@@ -267,7 +267,7 @@ function FrameScene() {
 // ── Root ─────────────────────────────────────────────────────────────────────
 export default function IsometricBlueprintScene() {
   return (
-    <div style={{ width: '100%', height: '100vh', background: BG_COLOR }}>
+    <div style={{ width: '100%', height: '100%', background: BG_COLOR }}>
       <Canvas
         gl={{ antialias: true, alpha: false }}
         dpr={[1, 2]}

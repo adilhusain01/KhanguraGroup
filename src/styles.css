@@ -1032,6 +1032,36 @@ a {
     white-space: nowrap;
   }
 }
+
+/* The admin is an application workspace, not a centred marketing section. */
+.admin {
+  width: 100%;
+  min-height: 100svh;
+}
+.admin-shell {
+  width: 100%;
+  max-width: none;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+.admin-sidebar {
+  min-height: 100svh;
+}
+.admin-main {
+  min-height: 100svh;
+}
+
+@media (max-width: 759px) {
+  .admin-shell {
+    display: block;
+  }
+  .admin-sidebar {
+    min-height: auto;
+  }
+}
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover .project-image::before {
     transform: rotate(45deg) scale(1.12);
