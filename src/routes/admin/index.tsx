@@ -997,8 +997,13 @@ function Admin() {
       <div className="admin-shell">
         <aside className="admin-sidebar">
           <a className="brand" href="/">
-            <span className="brand-mark">KG</span>
-            <span>Content Console</span>
+            <span className="brand-mark" aria-hidden="true">
+              <img src="/brand/khangura-client-logo-v1.png" alt="" />
+            </span>
+            <span className="admin-brand-copy">
+              <b>Khangura</b>
+              <small>Content Console</small>
+            </span>
           </a>
           <nav>
             {nav.map(([id, label, Icon]) => (

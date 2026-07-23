@@ -9,8 +9,6 @@ export function CapabilityLab() {
   const current = services.find((service) => service.key === active)!
 
   useEffect(() => {
-    if (window.innerWidth < 861) return
-
     let frame: number | null = null
     const syncActiveService = () => {
       frame = null

@@ -265,6 +265,11 @@ function Home() {
             </div>
             <div className="kg-path-grid">
               <Link className="kg-path-card" to="/contact">
+                <img
+                  className="kg-path-photo"
+                  src="/landing-residential.webp"
+                  alt="Illustrative view of a residential interior renovation in progress."
+                />
                 <div className="kg-path-icon">
                   <IconHome size={31} stroke={1.5} />
                 </div>
@@ -280,6 +285,11 @@ function Home() {
                 </b>
               </Link>
               <Link className="kg-path-card kg-path-card-orange" to="/contact">
+                <img
+                  className="kg-path-photo"
+                  src="/landing-commercial.webp"
+                  alt="Illustrative view of a commercial buildout in progress."
+                />
                 <div className="kg-path-icon">
                   <IconBuilding size={31} stroke={1.5} />
                 </div>

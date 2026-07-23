@@ -33,8 +33,7 @@ function About() {
         <section className="kg-content-section">
           <div className="kg-wrap kg-about-layout">
             <div className="kg-about-mark" aria-hidden="true">
-              <span>K</span>
-              <span>G</span>
+              <img src="/brand/khangura-client-logo-v1.png" alt="" />
             </div>
             <div className="kg-about-copy">
               <h2>
