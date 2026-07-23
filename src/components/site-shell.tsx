@@ -131,7 +131,7 @@ export function SiteFooter() {
         </div>
         <div className="kg-footer-column">
           <h2>Project help</h2>
-          <Link to="/contact">Request a quote</Link>
+          <Link to="/contact">Contact us</Link>
           <Link to="/faq">Common questions</Link>
           <Link to="/service-areas">Service areas</Link>
           <Link to="/privacy">Privacy</Link>
@@ -154,7 +154,7 @@ export function SiteFooter() {
         </div>
         <div className="kg-footer-brandline">
           <Link className="kg-brand kg-brand-footer" to="/">
-            <Brand company={company} />
+            <Brand company={company} useMonogram />
           </Link>
           <span>Surrey, British Columbia</span>
         </div>
@@ -206,7 +206,7 @@ export function FinalCta() {
         </div>
         <div className="kg-final-actions">
           <Link className="kg-button kg-button-signal" to="/contact">
-            Request a quote
+            Contact us
             <IconArrowUpRight size={19} />
           </Link>
           <a href="tel:+16723771944">

@@ -107,7 +107,7 @@ function Home() {
                 </p>
                 <div className="kg-hero-actions">
                   <Link className="kg-button kg-button-signal" to="/contact">
-                    Request a quote
+                    Contact us
                     <IconArrowUpRight size={18} />
                   </Link>
                   <a className="kg-text-link" href="tel:+16723771944">
@@ -321,7 +321,7 @@ function Home() {
             </div>
             <div className="kg-final-actions">
               <Link className="kg-button kg-button-signal" to="/contact">
-                Request a quote
+                Contact us
                 <IconArrowUpRight size={19} />
               </Link>
               <a href="tel:+16723771944">
