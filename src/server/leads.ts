@@ -13,6 +13,7 @@ export async function createEnquiry(input: EnquiryInput) {
     reference,
     status: 'new',
     whatsapp: { state: 'queued', attempts: 0 },
+    emailNotice: { state: 'queued', attempts: 0 },
     createdAt: now,
     updatedAt: now,
     deletedAt: null,

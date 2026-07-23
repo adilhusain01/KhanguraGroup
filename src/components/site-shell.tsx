@@ -2,12 +2,14 @@ import { Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import {
   IconArrowUpRight,
+  IconBrandWhatsapp,
   IconMail,
   IconMenu2,
   IconPhone,
   IconX,
 } from '@tabler/icons-react'
 import type { ReactNode } from 'react'
+import { whatsappHref } from '../lib/content'
 
 const navLinks = [
   { label: 'Services', to: '/services' as const },
@@ -34,7 +36,7 @@ function Brand({
     <>
       <span className="kg-brand-mark" aria-hidden="true">
         {useMonogram ? (
-          <img src="/brand/khangura-monogram-v2.png" alt="" />
+          <img src="/brand/khangura-client-logo-v1.png" alt="" />
         ) : (
           <>
             <span>K</span>
@@ -174,6 +176,16 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       </a>
       <SiteHeader />
       {children}
+      <a
+        className="kg-whatsapp-float"
+        href={whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat with Khangura Group on WhatsApp"
+      >
+        <IconBrandWhatsapp size={20} stroke={1.9} />
+        <span>WhatsApp</span>
+      </a>
       <SiteFooter />
     </div>
   )

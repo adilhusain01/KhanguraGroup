@@ -326,10 +326,9 @@ export function EnquiryForm() {
         <label htmlFor="attachments">
           Private attachments — up to five files, 10MB each
         </label>
-        <input
+        <FilePicker
           id="attachments"
           name="attachments"
-          type="file"
           multiple
           accept="image/jpeg,image/png,image/webp,application/pdf"
         />
@@ -488,16 +487,15 @@ export function CareerForm({
       </div>
       <div className="kg-field kg-field-wide">
         <label htmlFor="resume">Resume (PDF, DOC, or DOCX)</label>
-        <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" />
+        <FilePicker id="resume" name="resume" accept=".pdf,.doc,.docx" />
       </div>
       <div className="kg-field kg-field-wide">
         <label htmlFor="supportingFiles">
           Optional certifications / portfolio — up to three files
         </label>
-        <input
+        <FilePicker
           id="supportingFiles"
           name="supportingFiles"
-          type="file"
           multiple
           accept=".pdf,.jpg,.jpeg,.png"
         />
@@ -534,6 +532,53 @@ function Field({
     </div>
   )
 }
+
+function FilePicker({
+  id,
+  name,
+  accept,
+  multiple = false,
+}: {
+  id: string
+  name: string
+  accept: string
+  multiple?: boolean
+}) {
+  const [fileNames, setFileNames] = useState<string[]>([])
+  const status = fileNames.length
+    ? fileNames.length === 1
+      ? fileNames[0]
+      : `${fileNames.length} files selected`
+    : 'No files selected'
+
+  return (
+    <div className="kg-file-picker">
+      <input
+        className="kg-file-picker-input"
+        id={id}
+        name={name}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        onChange={(event) =>
+          setFileNames(
+            Array.from(event.currentTarget.files ?? []).map(
+              (file) => file.name,
+            ),
+          )
+        }
+      />
+      <label className="kg-file-picker-button" htmlFor={id}>
+        <IconFileUpload size={16} />
+        {multiple ? 'Choose files' : 'Choose file'}
+      </label>
+      <span className="kg-file-picker-status" aria-live="polite">
+        {status}
+      </span>
+    </div>
+  )
+}
+
 function Select({
   label,
   name,

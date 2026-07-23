@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { json } from '@tanstack/react-start'
+import { deliverQueuedEnquiryEmail } from '../../server/email'
 import { createEnquiry } from '../../server/leads'
 import { enquiryInput } from '../../server/schemas'
 import { deliverQueuedWhatsApp } from '../../server/whatsapp'
@@ -22,6 +23,7 @@ export const Route = createFileRoute('/api/inquiries')({
           const data = enquiryInput.parse(body)
           const { reference } = await createEnquiry(data)
           // Persist first: notification failure must never invalidate the lead.
+          void deliverQueuedEnquiryEmail(reference).catch(() => undefined)
           void deliverQueuedWhatsApp(reference).catch(() => undefined)
           return json({ reference }, { status: 201 })
         } catch (error) {
