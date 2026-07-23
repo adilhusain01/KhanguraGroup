@@ -6,6 +6,10 @@ import {
   IconTimeline,
 } from '@tabler/icons-react'
 import { FinalCta, PageHero, SiteLayout } from '../../components/site-shell'
+import {
+  isServiceKey,
+  ServiceMediaToggle,
+} from '../../components/service-media-toggle'
 import { services as fallbackServices } from '../../lib/content'
 
 export const Route = createFileRoute('/services/$slug')({
@@ -55,6 +59,7 @@ function ServiceDetail() {
   const notes =
     service.process ??
     'The team confirms scope, access, sequence, materials, and finish expectations during project review.'
+  const serviceKey = isServiceKey(service.slug) ? service.slug : undefined
 
   return (
     <SiteLayout>
@@ -63,6 +68,13 @@ function ServiceDetail() {
           title={service.title}
           description={service.summary ?? service.description ?? ''}
         />
+        {serviceKey ? (
+          <section className="kg-service-media-section">
+            <div className="kg-wrap">
+              <ServiceMediaToggle serviceKey={serviceKey} variant="detail" />
+            </div>
+          </section>
+        ) : null}
         <section className="kg-content-section">
           <div className="kg-wrap kg-detail-grid">
             <article className="kg-detail-feature">

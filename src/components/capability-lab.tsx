@@ -1,26 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { services } from '../lib/content'
 import type { ServiceKey } from '../lib/content'
-import FramingScene from './effects/IsometricBlueprintScene.jsx'
-import MuddingScene from './effects/MuddingScene.jsx'
-import InsulationScene from './effects/InsulationScene.jsx'
-import PaintingScene from './effects/PaintingScene.jsx'
-import ConcreteScene from './effects/ConcreteScene.jsx'
-
-const sceneByService = {
-  framing: FramingScene,
-  mudding: MuddingScene,
-  insulation: InsulationScene,
-  painting: PaintingScene,
-  concrete: ConcreteScene,
-} satisfies Record<ServiceKey, React.ComponentType>
+import { ServiceMediaToggle } from './service-media-toggle'
 
 export function CapabilityLab() {
   const [active, setActive] = useState<ServiceKey>('framing')
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([])
   const current = services.find((service) => service.key === active)!
-  const CurrentIcon = current.icon
-  const ActiveScene = sceneByService[active]
 
   useEffect(() => {
     if (!('IntersectionObserver' in window) || window.innerWidth < 861) return
@@ -51,19 +37,7 @@ export function CapabilityLab() {
           <div className="kg-stage-number" aria-hidden="true">
             {current.number}
           </div>
-          <div className="kg-stage-title">
-            <CurrentIcon size={21} stroke={1.5} />
-            <div>
-              <span>{current.short}</span>
-              <strong>{current.name}</strong>
-            </div>
-          </div>
-          <div
-            className="kg-stage-canvas kg-original-effect"
-            aria-label={`${current.name} process animation`}
-          >
-            <ActiveScene key={active} />
-          </div>
+          <ServiceMediaToggle serviceKey={active} variant="stage" />
         </div>
       </div>
 

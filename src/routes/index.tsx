@@ -4,12 +4,14 @@ import {
   IconArrowUpRight,
   IconBriefcase2,
   IconBuilding,
+  IconCamera,
   IconCheck,
+  IconCube,
   IconHome,
   IconMapPin,
   IconPhone,
 } from '@tabler/icons-react'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import HeroBuildScene from '../components/effects/HeroBuildScene.jsx'
 import { faqs } from '../lib/content'
 import { SiteLayout } from '../components/site-shell'
@@ -63,9 +65,37 @@ const process = [
 ]
 
 function HeroGraphic() {
+  const [view, setView] = useState<'photo' | 'build'>('photo')
+
   return (
     <div className="kg-hero-graphic">
-      <HeroBuildScene />
+      {view === 'photo' ? (
+        <img
+          className="kg-hero-photo"
+          src="/hero/structure-surface-finish.png"
+          alt="Illustrative construction interior showing framing and drywall progress."
+        />
+      ) : (
+        <HeroBuildScene />
+      )}
+      <div className="kg-hero-view-switch" role="group" aria-label="Hero view">
+        <button
+          type="button"
+          aria-pressed={view === 'photo'}
+          onClick={() => setView('photo')}
+        >
+          <IconCamera size={16} stroke={1.8} />
+          Site view
+        </button>
+        <button
+          type="button"
+          aria-pressed={view === 'build'}
+          onClick={() => setView('build')}
+        >
+          <IconCube size={16} stroke={1.8} />
+          Build view
+        </button>
+      </div>
     </div>
   )
 }
